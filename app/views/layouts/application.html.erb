@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookars2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navber navber-expand-lg navber-dark bg-dark">
+        <div class="container">
+          <a class="navber-brand" href="/">Bookers</a>
+          <button class="navber-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapase" id="navbarNavDropdown">
+            <ul class="navber-nav ml-auto">
+              <% if user_signed_in? %>
+              <il class="nav-item">
+                <%= link_to "Home", user_path(current_user.id), class: 'nav_link text-light' %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "User", , class: 'nav_link text-light' %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "Books", , class: 'nav_link text-light' %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "Log out", destroy_user_session_path(current_user.id), class: 'nav_link text-light' %>
+              </il>
+              <% else %>
+              <il class="nav-item">
+                <%= link_to "Home", , class: 'nav_link text-light' %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "About", , class: 'nav_link text-light' %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path, class: 'nav_link text-light' %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "Log in", new_user_session_path, class: 'nav_link text-light' %>
+              </il>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
+    <%= yield %>
+    </main>
+    <fotter class="text-dark">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </fotter>
+  </body>
+</html>
