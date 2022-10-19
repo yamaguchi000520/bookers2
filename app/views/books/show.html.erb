@@ -1,2 +1,41 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div id="notice">
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
+  <% if @book.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @book.errors.count %>error prohidited this book from being sabed:</h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="row">
+  <%= render 'list', books: @books %>
+    <div class='col-md-9 offset-md-1'>
+      <h2>Books</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Title</th>
+            <th scope="col">Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <% @books.last(14).each do |book| %>
+            <th scope="row"><%= user.id.image %></th>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+            <% end %>
+          </tr>
+        </tbody>
+    </div>
+  </div>
+</div>
