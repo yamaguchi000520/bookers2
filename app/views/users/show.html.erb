@@ -1,2 +1,45 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div id="notice">
+  <%= flash[:notice] %>
+</div>
+
+<div class="container p-5">
+<% if @books.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @books.errors.count %>error prohidited this book from being sabed:</h2>
+    <ul>
+      <% @books.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'list', books: @books %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Books</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+          <% @books.last(14).each do |book| %>
+          <% image_tag_image.get_profile_image %>
+            <td><%= image_tag user.id.image %><br><%= @books.user_id %></td>
+            <td><%= @books.title %></td>
+            <td><%= @books.body %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
