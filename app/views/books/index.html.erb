@@ -15,8 +15,8 @@
 <% end %>
 
   <div class="row">
-  <%= render 'list', books: @books %>
-    <div class='col-md-9 offset-md-1'>
+  <%= render 'list', books: @books, book: @book, user: @user %>
+    <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <table>
         <thead>
@@ -30,14 +30,13 @@
         <tbody>
           <tr>
           <% @books.last(14).each do |book| %>
-            <td><%= image_tag @user.get_profile_image(100,100) %><br><%= @book.user_id %></td>
+            <td><%= image_tag @user.get_profile_image(100,100) %><br><%= @user.name %></td>
             <td><%= book.title %></td>
             <td><%= book.body %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
-
-</div>
+    </div>
   </div>
 </div>

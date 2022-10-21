@@ -15,27 +15,26 @@
 <% end %>
 
   <div class="row">
-  <%= render 'list', books: @books %>
-    <div class='col-md-9 offset-md-1'>
+  <%= render 'list', books: @books, book: @book, user: @user %>
+    <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <table class="table">
+      <table>
         <thead>
           <tr>
-            <th scope="col"></th>
-            <th scope="col">Title</th>
-            <th scope="col">Opinion</th>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
           </tr>
         </thead>
         <tbody>
-
           <tr>
             <% @books.last(14).each do |book| %>
-            <th scope="row"><%= user.id.image %></th>
+            <th><%= image_tag @user.get_profile_image(100,100) %></th>
             <td><%= book.title %></td>
             <td><%= book.body %></td>
             <% end %>
           </tr>
         </tbody>
+      </div>
     </div>
-  </div>
 </div>

@@ -32,14 +32,16 @@
 
         <tbody>
           <tr>
-          <% @books.last(14).each do |book| %>
-            <td><%= book.user.id.image %><br><%= @book.user_id %></td>
+          <% @book.each do |book| %>
+            <td><%= image_tag @user.get_profile_image(100,100) %><br><%= @user.name(current_user) %></td>
             <td><%= book.title %></td>
             <td><%= book.body %></td>
             <td>
-              <a class="btn btn-sm btn-success">Edit</a>
-              <%= link_to "Edit", edit_book_path(book.id), class:"btn btn-sm btn-success" %></td>
-            <td class="btn btn-"><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
+              <%= link_to "Edit", edit_book_path(book.id), class:"btn btn-sm btn-success" %>
+            </td>
+            <td>
+              <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
+            </td>
           </tr>
           <% end %>
         </tbody>

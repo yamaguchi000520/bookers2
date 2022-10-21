@@ -178,7 +178,6 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  #config.name_length = 2..10
 
   config.password_length = 6..128
 
