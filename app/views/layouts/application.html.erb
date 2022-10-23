@@ -24,12 +24,12 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
               <il class="nav-item">
-                <i class="fa fa-home fa-inverse"></i>
+                <i class="fas fa-home fa-inverse"></i>
                 <%= link_to "Home", user_path(current_user.id), class: 'nav_link text-light' %>
               </il>
               <il class="nav-item">
                 <i class="fas fa-users fa-inverse"></i>
-                <%= link_to "User", users_path, class: 'nav_link text-light' %>
+                <%= link_to "Users", users_path, class: 'nav_link text-light' %>
               </il>
               <il class="nav-item">
                 <i class="fas fa-book-open fa-inverse"></i>
@@ -41,7 +41,7 @@
               </il>
               <% else %>
               <il class="nav-item">
-                <i class="fa fa-home fa-inverse"></i>
+                <i class="fas fa-home fa-inverse"></i>
                 <%= link_to "Home", root_path, class: 'nav_link text-light' %>
               </il>
               <il class="nav-item">

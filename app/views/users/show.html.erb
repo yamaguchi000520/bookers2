@@ -2,22 +2,8 @@
   <%= flash[:notice] %>
 </div>
 
-<div class="container p-5">
-<% if @books.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= @books.errors.count %>error prohidited this book from being sabed:</h2>
-    <ul>
-      <% @books.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-  <div class="row">
-    <div class="col-md-3">
-      <%= render 'list', books: @books %>
-    </div>
+<div class="container p-3 px-5 px-sm-0">
+  <%= render 'books/list', book: @book, user: @user %>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <table class="table table-hover">
@@ -31,11 +17,14 @@
 
         <tbody>
           <tr>
-          <% @books.last(14).each do |book| %>
-          <% image_tag_image.get_profile_image %>
-            <td><%= image_tag user.id.image %><br><%= @books.user_id %></td>
-            <td><%= @books.title %></td>
-            <td><%= @books.body %></td>
+          <% @books.each do |book| %>
+            <td>
+              <%= link_to user_path(book.user.id) do %>
+                <%= image_tag book.user.get_profile_image(100,100) %><br><%= book.user.name %>
+              <% end %>
+            </td>
+            <td><%= link_to book.title, "/books/#{book.id}" %></td>
+            <td><%= book.body %></td>
           </tr>
           <% end %>
         </tbody>

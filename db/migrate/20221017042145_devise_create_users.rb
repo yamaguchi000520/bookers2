@@ -37,8 +37,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       #紹介メッセージを保存する
       t.text :introduction
-
-
       t.timestamps null: false
     end
 

@@ -2,39 +2,43 @@
   <%= flash[:notice] %>
 </div>
 
-<div class="container">
-  <% if @book.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= @book.errors.count %>error prohidited this book from being sabed:</h2>
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-  <div class="row">
-  <%= render 'list', books: @books, book: @book, user: @user %>
+<div class="container p-3 px-5 px-sm-0">
+  <%= render 'list', book: @booknew, user: @user %>
     <div class='col-md-8 offset-md-1'>
-      <h2>Books</h2>
-      <table>
+      <h2>Book detail</h2>
+      <table class="table">
         <thead>
           <tr>
             <th></th>
             <th>Title</th>
-            <th>Opinion</th>
+            <th>Body</th>
+            <th colspan="2"></th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
-            <% @books.last(14).each do |book| %>
-            <th><%= image_tag @user.get_profile_image(100,100) %></th>
-            <td><%= book.title %></td>
-            <td><%= book.body %></td>
+            <td>
+              <%= link_to user_path(@book.user.id) do %>
+                <%= image_tag @book.user.get_profile_image(100,100) %><br><%= @book.user.name %></td>
+              <% end %>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
+            <% if user_signed_in? && current_user.id == @book.user_id %>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-sm btn-success" %>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@book.id), class:"btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %>
+              </td>
+            <% else %>
+              <td></td>
+              <td></td>
             <% end %>
+            </td>
           </tr>
         </tbody>
-      </div>
+      </table>
     </div>
+  </div>
 </div>

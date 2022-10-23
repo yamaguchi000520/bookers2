@@ -2,39 +2,28 @@
   <%= flash[:notice] %>
 </div>
 
-<div class="container p-5">
-<% if @books.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= @books.errors.count %>error prohidited this book from being sabed:</h2>
-    <ul>
-      <% @books.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-  <div class="row">
-    <div class="col-md-3">
-      <%= render 'list', books: @books %>
-    </div>
+<div class="container p-3 px-5 px-sm-0">
+  <%= render 'books/list', book: @book, user: @user %>
     <div class='col-md-8 offset-md-1'>
-      <h2>Books</h2>
-      <table class="table table-hover">
+      <h2>Users</h2>
+      <table class="table">
         <thead>
           <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Body</th>
+            <th>image</th>
+            <th>name</th>
+             <th></th>
           </tr>
-        </thead>
+         </thead>
 
         <tbody>
           <tr>
-          <% @books.last(14).each do |book| %>
-            <td><%= user.id.image %><br><%= @books.user_id %></td>
-            <td><%= book.title %></td>
-            <td><%= book.body %></td>
+          <% @books.each do |book| %>
+            <td>
+
+              <%= image_tag book.user.get_profile_image(100,100) %>
+            </td>
+            <td><%= book.user.name %></td>
+            <td><%= link_to "Show", user_path(book.user) %></td>
           </tr>
           <% end %>
         </tbody>
